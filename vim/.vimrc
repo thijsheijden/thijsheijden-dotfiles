@@ -7,7 +7,6 @@ set number
 set hlsearch
 set ruler
 "-- set paste
-highlight Comment ctermfg=green
 set backspace=indent,eol,start
 
 "-- PLUGINS --
@@ -25,12 +24,17 @@ Plug 'metakirby5/codi.vim'
 
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} "Nerdtree
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "autocompletion
+Plug 'OmniSharp/omnisharp-vim'
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'keith/parsec.vim'
 call plug#end()
 
 " save with zz
 nnoremap zz :update<cr>
+
+" Turn off automatic multiline comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -70,3 +74,10 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 set encoding=UTF-8
+
+" coc.nvim language plugins auto install (C# and C++)
+let g:coc_global_extensions=[ 'coc-omnisharp', 'coc-clangd' ]
+let g:OmniSharp_start_without_solution = 1
+
+" Parsec theme
+syntax on
